@@ -26,10 +26,12 @@ export default class App extends Component {
                 if (data.data.totalItems > 0) {
                   console.log(data.data.items)
                   this.setState({loading: false});
-                  this.setState({books : data.data.items.map(item => item)})
+                  this.setState({books : data.data.items})
+                  localStorage.setItem('books', data.data.items)
                 } else {
                   this.setState({loading: false});
                   this.setState({books : ''})
+                  localStorage.setItem('books', '')
                 }
             }) 
   }
