@@ -6,7 +6,7 @@ import axios from 'axios';
 export default class App extends Component {
 
   state = {
-    books: localStorage.getItem('books') === null ? [] : localStorage.getItem('books'),
+    books: localStorage.getItem('books') === null ? [] : JSON.parse(localStorage.getItem('books')),
     loading: false
   }
 
@@ -27,11 +27,11 @@ export default class App extends Component {
                   console.log(data.data.items)
                   this.setState({loading: false});
                   this.setState({books : data.data.items})
-                  localStorage.setItem('books', data.data.items)
+                  localStorage.setItem('books', JSON.stringify(data.data.items))
                 } else {
                   this.setState({loading: false});
                   this.setState({books : ''})
-                  localStorage.setItem('books', '')
+                  localStorage.removeItem('books')
                 }
             }) 
   }
