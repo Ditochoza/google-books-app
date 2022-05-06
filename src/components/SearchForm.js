@@ -52,15 +52,17 @@ export default class SearchForm extends Component {
                         type="radio"
                         name="printType"
                         value="all"
-                        defaultChecked/> All
+                        defaultChecked={this.state.printType === 'all'}/> All
                     <input 
                         type="radio"
                         name="printType"
-                        value="magazines"/> Magazines
+                        value="magazines"
+                        defaultChecked={this.state.printType === 'magazines'}/> Magazines
                     <input 
                         type="radio"
                         name="printType"
-                        value="books"/> Books
+                        value="books"
+                        defaultChecked={this.state.printType === 'books'}/> Books
                     </div>
                     <button type="submit" onSubmit={this.onSubmitSearch} className='Button'>
                         Search
