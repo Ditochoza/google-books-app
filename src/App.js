@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './App.css';
 import SearchForm from './components/SearchForm';
 import Books from './components/Books';
 import axios from 'axios'; 
@@ -25,11 +24,12 @@ export default class App extends Component {
     axios.get("https://www.googleapis.com/books/v1/volumes?" + queryString + "&printType=" + printType + "&maxResults=40")  
             .then(data => {
                 if (data.data.totalItems > 0) {
+                  console.log(data.data.items)
                   this.setState({loading: false});
-                  this.setState({books : data.data.items.map(item => item.volumeInfo)})
+                  this.setState({books : data.data.items.map(item => item)})
                 } else {
                   this.setState({loading: false});
-                  this.setState({books : []})
+                  this.setState({books : ''})
                 }
             }) 
   }
@@ -37,7 +37,7 @@ export default class App extends Component {
   render() {
     return (
       <div className="App">
-        <SearchForm searchBooks={this.searchBooks}></SearchForm>
+        <SearchForm searchBooks={this.searchBooks} ></SearchForm>
         <Books books={this.state.books}></Books>
       </div>
     )

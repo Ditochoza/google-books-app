@@ -5,10 +5,10 @@ export default class Book extends Component {
         const {book} = this.props;
 
         return (
-            <div>
-                {book.title} - 
-                {book.author} - 
-                {book.description}
+            <div className='Book' onClick={() => window.open(book.previewLink)}>
+                <b>{book.title}</b>
+                <p>{book.authors}</p>
+                <p>{book.description}</p>
             </div>
         )
     }

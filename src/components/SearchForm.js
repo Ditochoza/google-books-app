@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../App.css';
 
 export default class SearchForm extends Component {
 
@@ -6,6 +7,12 @@ export default class SearchForm extends Component {
         title: '',
         authors: '',
         printType: 'all'
+    }
+
+    StyleDisabled() {
+        return {
+
+        }
     }
 
     onSubmitSearch = e => {
@@ -21,37 +28,42 @@ export default class SearchForm extends Component {
 
     render() {
         return (
-            <form onSubmit={ this.onSubmitSearch }>
-                <input 
-                    type="text" 
-                    placeholder="Title"
-                    name="title"
-                    value={this.state.title}
-                    onChange={this.onChangeInput}/>
-                <input 
-                    type="text" 
-                    placeholder="Author"
-                    name="authors"
-                    value={this.state.authors}
-                    onChange={this.onChangeInput}/>
-                <div onChange={this.onChangeInput}>
-                <input 
-                    type="radio"
-                    name="printType"
-                    value="all"/> All
-                <input 
-                    type="radio"
-                    name="printType"
-                    value="magazines"/> Magazines
-                <input 
-                    type="radio"
-                    name="printType"
-                    value="books"/> Books
-                </div>
-                <button type="submit" onSubmit={this.onSubmitSearch}>
-                    Search
-                </button>
-            </form>
+            <div className='Form'>
+                <form onSubmit={this.onSubmitSearch}>
+                    <input className='Input'
+                        type="text" 
+                        placeholder="Title"
+                        name="title"
+                        value={this.state.title}
+                        onChange={this.onChangeInput}/>
+                    <br/>
+                    <input className='Input'
+                        type="text" 
+                        placeholder="Author"
+                        name="authors"
+                        value={this.state.printType === 'magazines' ? '' : this.state.authors}
+                        onChange={this.onChangeInput}
+                        disabled={this.state.printType === 'magazines'}/>
+                    <div onChange={this.onChangeInput} className='Radio'>
+                    <input
+                        type="radio"
+                        name="printType"
+                        value="all"
+                        defaultChecked/> All
+                    <input 
+                        type="radio"
+                        name="printType"
+                        value="magazines"/> Magazines
+                    <input 
+                        type="radio"
+                        name="printType"
+                        value="books"/> Books
+                    </div>
+                    <button type="submit" onSubmit={this.onSubmitSearch} className='Button'>
+                        Search
+                    </button>
+                </form>
+            </div>
         )
     }
 }
