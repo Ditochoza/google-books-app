@@ -6,7 +6,7 @@ import axios from 'axios';
 export default class App extends Component {
 
   state = {
-    books: [],
+    books: localStorage.getItem('books') === null ? [] : localStorage.getItem('books'),
     loading: false
   }
 

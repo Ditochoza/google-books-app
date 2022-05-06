@@ -4,9 +4,9 @@ import '../App.css';
 export default class SearchForm extends Component {
 
     state = {
-        title: '',
-        authors: '',
-        printType: 'all'
+        title: localStorage.getItem('title') === null ? '' : localStorage.getItem('title'),
+        authors: localStorage.getItem('authors') === null ? '' : localStorage.getItem('authors'),
+        printType: localStorage.getItem('printType') === null ? 'all' : localStorage.getItem('printType'),
     }
 
     StyleDisabled() {
@@ -17,6 +17,9 @@ export default class SearchForm extends Component {
 
     onSubmitSearch = e => {
         e.preventDefault()
+        localStorage.setItem('title', this.state.title)
+        localStorage.setItem('authors', this.state.authors)
+        localStorage.setItem('printType', this.state.printType)
         this.props.searchBooks(this.state.title, this.state.authors, this.state.printType)
     }
 
